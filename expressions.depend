@@ -1,0 +1,12 @@
+# depslib dependency file v1.0
+1446041247 source:f:\users\doug\documents\github\expressions\evaluator.cpp
+	"Evaluator.h"
+
+1446043825 f:\users\doug\documents\github\expressions\evaluator.h
+	<string>
+	<sstream>
+
+1446041247 source:f:\users\doug\documents\github\expressions\main.cpp
+	<iostream>
+	"Evaluator.h"
+
