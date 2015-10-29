@@ -3,19 +3,14 @@
 
 #include "Evaluator.h"
 
-std::string argv_concatenate(int argc, const char*& argv[])
+void test()
 {
-    std::string to_return;
-    for (--argc; argc > 0; --argc)
-        to_return += argv[argc];
-
-    return to_return;
+    Evaluator eval("238");
+    std::cout << eval.eval() << std::endl;
 }
 
-int main(int argc, char* argv[])
+int main()
 {
-
-
-    std::cout << "Hello world!\n";
+    test();
     return 0;
 }
