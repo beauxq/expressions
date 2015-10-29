@@ -34,6 +34,8 @@
 		</Compiler>
 		<Unit filename="Evaluator.cpp" />
 		<Unit filename="Evaluator.h" />
+		<Unit filename="Token.cpp" />
+		<Unit filename="Token.h" />
 		<Unit filename="main.cpp" />
 		<Extensions>
 			<code_completion />
