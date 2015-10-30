@@ -10,7 +10,7 @@ class Evaluator
 {
 private:
     static const int FIRST_NON_WHITE;
-    static const int LAST_NON_WHITE;
+    // static const int LAST_NON_WHITE;
 
     std::string expression;
     int cursor;
