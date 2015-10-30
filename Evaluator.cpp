@@ -31,8 +31,12 @@ int Evaluator::read_int()
     /** reads an integer out of the expression from the cursor */
 
     // make stack of digits
+<<<<<<< HEAD
     // std::stack<char> digits;
     int to_return = 0;
+=======
+    std::stack<char> digits;
+>>>>>>> refs/remotes/origin/master
 
     while (isdigit(expression[cursor]))  // this is safe, returns false, for the end of the string (ISO/IEC 14882:2011 21.4.5)
     {
@@ -41,7 +45,10 @@ int Evaluator::read_int()
         ++cursor;
     }
 
+<<<<<<< HEAD
     /*
+=======
+>>>>>>> refs/remotes/origin/master
     // add up stack of digits
     int total = 0;
     int exponent = 0;  // 10 ^ exponent
