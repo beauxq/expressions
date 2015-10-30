@@ -31,14 +31,17 @@ int Evaluator::read_int()
     /** reads an integer out of the expression from the cursor */
 
     // make stack of digits
-    std::stack<char> digits;
+    // std::stack<char> digits;
+    int to_return = 0;
 
     while (isdigit(expression[cursor]))  // this is safe, returns false, for the end of the string (ISO/IEC 14882:2011 21.4.5)
     {
-        digits.push(expression[cursor] - 48);  // convert from ascii
+        to_return *= 10;
+        to_return += (expression[cursor] - '0');  // convert from ascii
         ++cursor;
     }
 
+    /*
     // add up stack of digits
     int total = 0;
     int exponent = 0;  // 10 ^ exponent
@@ -54,8 +57,9 @@ int Evaluator::read_int()
         ++exponent;
         digits.pop();
     }
+    */
 
-    return total;
+    return to_return;
 }
 
 void Evaluator::eat_white()
@@ -222,6 +226,7 @@ int Evaluator::eval()
             std::cout << tokens.front().integer << ' ';
         else
             std::cout << tokens.front().operat << ' ';
+        tokens.pop();
     }
 
 

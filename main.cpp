@@ -5,7 +5,7 @@
 
 void test()
 {
-    Evaluator eval("238");
+    Evaluator eval("4--- -----3");
     std::cout << eval.eval() << std::endl;
 }
 
