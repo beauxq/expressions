@@ -11,7 +11,7 @@
 #include "Token.h"
 
 const int Evaluator::FIRST_NON_WHITE = 33;  // first char that prints non-white
-const int Evaluator::LAST_NON_WHITE = 126;  // last (standard) char that prints non-white
+// const int Evaluator::LAST_NON_WHITE = 126;  // last (standard) char that prints non-white
 
 void Evaluator::store_exp(const std::string& input)
 {
@@ -30,6 +30,7 @@ int Evaluator::read_int()
 {
     /** reads an integer out of the expression from the cursor */
 
+    // make stack of digits
     std::stack<char> digits;
 
     while (isdigit(expression[cursor]))  // this is safe, returns false, for the end of the string (ISO/IEC 14882:2011 21.4.5)
@@ -38,6 +39,7 @@ int Evaluator::read_int()
         ++cursor;
     }
 
+    // add up stack of digits
     int total = 0;
     int exponent = 0;  // 10 ^ exponent
     int this_digit;
@@ -60,8 +62,7 @@ void Evaluator::eat_white()
 {
     /** moves cursor to next non-whitespace, printable character or end */
 
-    while ((cursor < expression.size()) &&
-           ((expression[cursor] < FIRST_NON_WHITE) || (expression[cursor] > LAST_NON_WHITE)))
+    while ((cursor < expression.size()) && (expression[cursor] < FIRST_NON_WHITE))
         ++cursor;
 }
 
@@ -174,9 +175,11 @@ std::queue<Token> Evaluator::make_tokens()
                     // not decrement, has to be negative
                     tokens.push(Token('n'));
                     ++cursor;
+                    /* old rule int must follow negative unary
                     eat_white();
                     if (! isdigit(expression[cursor]))
                         throw std::invalid_argument("Unary operator \"-\" must be followed by an integer" + cursor_str());
+                    */
                     break;
                     // TODO parentheses
                 case '^':
