@@ -12,14 +12,22 @@ struct Token
 
     const int integer;
     const char operat;
-    bool is_integer;
+    const int location;  // location of this token in the string
+    const bool is_integer;
 
-    bool is_unary();
+    bool is_unary() const;
+
+    bool operator> (const Token& rhs) const;
+    /** compares integers, or if not integer, compares precedence
+        @throws std::invalid_argument for compare integer and non-integer */
+    bool operator< (const Token& rhs) const { return rhs.operator> (*this); }
+    bool operator<= (const Token& rhs) const { return (! operator> (rhs)); }
+    bool operator>= (const Token& rhs) const { return (! rhs.operator> (*this)); }
 
     // ctors
-    Token() : integer(0), operat(), is_integer(true) {}  // just to make a valid state - this should never be used
-    Token(const int& x) : integer(x), operat(), is_integer(true) {}
-    Token(const char& c) : integer(), operat(c), is_integer(false) {}
+    Token() : integer(0), operat(), location(0), is_integer(true) {}  // just to make a valid state - this should never be used
+    Token(const int& x, const int& cursor) : integer(x), operat(), location(cursor), is_integer(true) {}
+    Token(const char& c, const int& cursor) : integer(), operat(c), location(cursor), is_integer(false) {}
 };
 
 #endif // TOKEN_H_INCLUDED
