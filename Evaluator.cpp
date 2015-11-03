@@ -186,7 +186,7 @@ std::queue<Token> Evaluator::make_tokens()
     return tokens;
 }
 
-// the algorithm of this function is adapted from Dr. Kuhail's examples and modified
+// the algorithm of this function is inspired by Dr. Kuhail's examples, adapted and modified
 void Evaluator::process_operator(std::stack<int>& operands, std::stack<Token>& operators, const Token& operator_) const
 {
     if (operators.empty() || (operator_.operat == '('))

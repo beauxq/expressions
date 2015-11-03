@@ -4,13 +4,21 @@
 	<Project>
 		<Option title="expressions" />
 		<Option pch_mode="2" />
-		<Option compiler="tdm32_gnu_gcc_compiler_510_dw2" />
+		<Option compiler="gcc" />
+		<MakeCommands>
+			<Build command="" />
+			<CompileFile command="" />
+			<Clean command="" />
+			<DistClean command="" />
+			<AskRebuildNeeded command="" />
+			<SilentBuild command=" &gt; $(CMD_NULL)" />
+		</MakeCommands>
 		<Build>
 			<Target title="Debug">
 				<Option output="bin/Debug/expressions" prefix_auto="1" extension_auto="1" />
 				<Option object_output="obj/Debug/" />
 				<Option type="1" />
-				<Option compiler="tdm32_gnu_gcc_compiler_510_dw2" />
+				<Option compiler="gcc" />
 				<Compiler>
 					<Add option="-g" />
 				</Compiler>
@@ -19,7 +27,7 @@
 				<Option output="bin/Release/expressions" prefix_auto="1" extension_auto="1" />
 				<Option object_output="obj/Release/" />
 				<Option type="1" />
-				<Option compiler="tdm32_gnu_gcc_compiler_510_dw2" />
+				<Option compiler="gcc" />
 				<Compiler>
 					<Add option="-O2" />
 				</Compiler>
@@ -28,11 +36,6 @@
 				</Linker>
 			</Target>
 		</Build>
-		<Compiler>
-			<Add option="-std=c++11" />
-			<Add option="-Wall" />
-			<Add option="-fexceptions" />
-		</Compiler>
 		<Unit filename="Evaluator.cpp" />
 		<Unit filename="Evaluator.h" />
 		<Unit filename="Token.cpp" />
