@@ -25,7 +25,7 @@ struct Token
     bool operator>= (const Token& rhs) const { return (! rhs.operator> (*this)); }
 
     // ctors
-    Token() : integer(0), operat(), location(0), is_integer(true) {}  // just to make a valid state - this should never be used
+    Token() : integer(0), operat(), location(0), is_integer(true) {}
     Token(const int& x, const int& cursor) : integer(x), operat(), location(cursor), is_integer(true) {}
     Token(const char& c, const int& cursor) : integer(), operat(c), location(cursor), is_integer(false) {}
 };

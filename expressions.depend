@@ -1,30 +1,28 @@
 # depslib dependency file v1.0
-1446266832 source:f:\users\doug\documents\github\expressions\evaluator.cpp
+1446564158 source:f:\users\doug\documents\github\expressions\evaluator.cpp
 	"Evaluator.h"
 	<string>
 	<cctype>
 	<stack>
-	<iostream>
 	<stdexcept>
 	<queue>
-	<sstream>
 	"Token.h"
 
-1446264101 f:\users\doug\documents\github\expressions\evaluator.h
+1446563726 f:\users\doug\documents\github\expressions\evaluator.h
 	<string>
 	<queue>
 	<stack>
 	"Token.h"
 
-1446264394 source:f:\users\doug\documents\github\expressions\main.cpp
+1446563525 source:f:\users\doug\documents\github\expressions\main.cpp
 	<iostream>
 	<string>
 	"Evaluator.h"
 
-1446263856 f:\users\doug\documents\github\expressions\token.h
+1446562743 f:\users\doug\documents\github\expressions\token.h
 	<string>
 
-1446260370 source:f:\users\doug\documents\github\expressions\token.cpp
+1446562743 source:f:\users\doug\documents\github\expressions\token.cpp
 	"Token.h"
 	<string>
 	<stdexcept>
