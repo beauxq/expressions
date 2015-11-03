@@ -11,7 +11,6 @@ class Evaluator
 {
 private:
     static const int FIRST_NON_WHITE;
-    // static const int LAST_NON_WHITE;
 
     std::string expression;
     int cursor;
@@ -35,6 +34,7 @@ private:
     int evaluate_one_operator(std::stack<int>& operands, const Token& operator_) const;
     /** TODO document this */
 public:
+    // ctors
     Evaluator() : expression(""), cursor(0) {}
     Evaluator(const std::string& input) : expression(input), cursor(0) {}
 
