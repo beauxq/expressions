@@ -194,7 +194,7 @@ void Evaluator::process_operator(std::stack<int>& operands, std::stack<Token>& o
     }
     else  // stack not empty and not open parenthesis
     {
-        if ((operator_ > operators.top()) || (operator_.is_unary()))  // all unary > other unary (even though same precedence #)
+        if ((operator_ > operators.top()) || (operator_.is_unary))  // all unary > other unary (even though same precedence #)
             operators.push(operator_);
         else  // operator_ has lower (or equal) precedence than top
         {
@@ -269,7 +269,7 @@ int Evaluator::evaluate_one_operator(std::stack<int>& operands, const Token& ope
     // pull needed operands
     rhs = operands.top();
     operands.pop();
-    if (! operator_.is_unary())
+    if (! operator_.is_unary)
     {
         lhs = operands.top();
         operands.pop();

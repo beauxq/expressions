@@ -14,8 +14,10 @@ struct Token
     const char operat;
     const int location;  // location of this token in the string
     const bool is_integer;
+    bool is_unary;
 
-    bool is_unary() const;
+    void check_unary();
+    /** assigns value to is_unary */
 
     bool operator> (const Token& rhs) const;
     /** compares integers, or if not integer, compares precedence
@@ -25,9 +27,9 @@ struct Token
     bool operator>= (const Token& rhs) const { return (! rhs.operator> (*this)); }
 
     // ctors
-    Token() : integer(0), operat(), location(0), is_integer(true) {}
-    Token(const int& x, const int& cursor) : integer(x), operat(), location(cursor), is_integer(true) {}
-    Token(const char& c, const int& cursor) : integer(), operat(c), location(cursor), is_integer(false) {}
+    Token() : integer(0), operat(), location(0), is_integer(true), is_unary(false) {}
+    Token(const int& i, const int& cursor) : integer(i), operat(), location(cursor), is_integer(true), is_unary(false) {}
+    Token(const char& o, const int& cursor) : integer(), operat(o), location(cursor), is_integer(false) { check_unary(); }
 };
 
 #endif // TOKEN_H_INCLUDED
