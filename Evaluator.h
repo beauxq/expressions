@@ -17,8 +17,6 @@ private:
 
     void store_exp(const std::string& input);
     /** stores string in expression */
-    void reset_exp();
-    /** resets the cursor */
     int read_int();
     /** reads an integer out of the expression from the cursor */
     void eat_white();
@@ -28,11 +26,13 @@ private:
     std::queue<Token> make_tokens();
     /** tokenizes expression into a queue of operators and operands */
     void process_operator(std::stack<int>& operands, std::stack<Token>& operators, const Token& op) const;
-    /** TODO document this */
+    /** handles order of operations for this operator
+        compared to other operators on the operator stack */
     int eval_tokens(std::queue<Token>& tokens) const;
-    /** evaluate the expression from quque of tokens */
+    /** evaluate the expression from queue of tokens */
     int evaluate_one_operator(std::stack<int>& operands, const Token& operator_) const;
-    /** TODO document this */
+    /** evaluates the operator with operands from the operand stack
+        places the result on the operand stack */
 public:
     // ctors
     Evaluator() : expression(""), cursor(0) {}

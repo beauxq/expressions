@@ -18,13 +18,6 @@ void Evaluator::store_exp(const std::string& input)
     cursor = 0;
 }
 
-void Evaluator::reset_exp()
-{
-    /** resets the cursor */
-
-    cursor = 0;
-}
-
 int Evaluator::read_int()
 {
     /** reads an integer out of the expression from the cursor */
@@ -137,8 +130,7 @@ std::queue<Token> Evaluator::make_tokens()
         {
             if (isdigit(expression[cursor]))  // integer
             {
-                int temp = cursor;  // need the value before it changes  // TODO do I?
-                tokens.push(Token(read_int(), temp));
+                tokens.push(Token(read_int(), cursor));
                 next_is_binary = true;
             }
             else  // unary
@@ -169,8 +161,8 @@ std::queue<Token> Evaluator::make_tokens()
                     break;
                 default:
                     if (tokens.empty())
-                        throw std::invalid_argument("Must begin with integer or unary operator" + cursor_str());
-                    throw std::invalid_argument("Integer or unary operator required" + cursor_str());
+                        throw std::invalid_argument("Must begin with integer or unary operator or open parenthesis" + cursor_str());
+                    throw std::invalid_argument("Integer or unary operator or open parenthesis required" + cursor_str());
                 }
             }
         }
@@ -178,9 +170,11 @@ std::queue<Token> Evaluator::make_tokens()
         eat_white();
     }
 
-    if (! next_is_binary)
+    if (! next_is_binary)  // expression has to end where a binary operator would come next
     {
-        throw std::invalid_argument("Expression must end with integer" + cursor_str());
+        if (tokens.empty())
+            throw std::invalid_argument("Empty expression" + cursor_str());
+        throw std::invalid_argument("Expression must end with integer (or close parenthesis)" + cursor_str());
     }
 
     return tokens;
@@ -189,6 +183,9 @@ std::queue<Token> Evaluator::make_tokens()
 // the algorithm of this function is inspired by Dr. Kuhail's examples, adapted and modified
 void Evaluator::process_operator(std::stack<int>& operands, std::stack<Token>& operators, const Token& operator_) const
 {
+    /** handles order of operations for this operator
+        compared to other operators on the operator stack */
+
     if (operators.empty() || (operator_.operat == '('))
     {
         if (operator_.operat == ')')
@@ -201,7 +198,7 @@ void Evaluator::process_operator(std::stack<int>& operands, std::stack<Token>& o
             operators.push(operator_);
         else  // operator_ has lower (or equal) precedence than top
         {
-            // pop all stacked operators with equal
+            // evaluate all stacked operators with equal
             // or higher precedence than operator_
             while (! operators.empty() && (operators.top().operat != '(') && (operator_ <= operators.top()))
             {
@@ -209,10 +206,9 @@ void Evaluator::process_operator(std::stack<int>& operands, std::stack<Token>& o
                 operands.push(evaluate_one_operator(operands, operators.top()));
                 operators.pop();
             }
-            // assert: Operator stack is empty or
-            //         top of stack is '(' or current
-            //         operator precedence > top of stack operator
-            //         precedence;
+            // assert: operator stack empty or
+            //         top of stack is '(' or
+            //         operator_ precedence > top of stack
             if (operator_.operat == ')')
             {
                 if (!operators.empty() && (operators.top().operat == '('))
@@ -241,8 +237,10 @@ int Evaluator::eval_tokens(std::queue<Token>& tokens) const
             process_operator(operands, operators, tokens.front());
         tokens.pop();
     }
-    // assert: operator stack has no parentheses,
-    //         only binary and unary operators
+    // assert: operator stack has no close parentheses,
+    //         if stack has open parentheses, it is invalid expression
+    //         (evaluate_one_operator will handle this)
+    //         else: only binary and unary operators
     //         in order of precedence
     //         highest at top of stack
 
@@ -252,14 +250,20 @@ int Evaluator::eval_tokens(std::queue<Token>& tokens) const
         operators.pop();
     }
     // assert: operands has only 1 integer
-    //         (because the validity of the expression
-    //          was checked when making the tokens)
+    //         (because the validity of the expression was checked
+    //          when making the tokens and processing operators)
 
     return operands.top();
 }
 
 int Evaluator::evaluate_one_operator(std::stack<int>& operands, const Token& operator_) const
 {
+    /** evaluates the operator with operands from the operand stack
+        places the result on the operand stack */
+
+    if (operator_.operat == '(')
+        throw std::invalid_argument("Unmatched open parenthesis" + cursor_str(operator_.location));
+
     int lhs, rhs, result;
 
     // pull needed operands
@@ -337,6 +341,8 @@ int Evaluator::eval()
 {
     /** translate the stored expression into tokens
         and evaluate the tokens */
+
+    cursor = 0;
 
     std::queue<Token> tokens = make_tokens();
 
