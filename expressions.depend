@@ -36,21 +36,21 @@
 	<queue>
 	"Token.h"
 
-1446580082 /home/doug/CodeBlocksProjects/expressions/expressions/Evaluator.h
+1447205868 /home/doug/CodeBlocksProjects/expressions/expressions/Evaluator.h
 	<string>
 	<queue>
 	<stack>
 	"Token.h"
 
-1446580082 /home/doug/CodeBlocksProjects/expressions/expressions/Token.h
+1447195005 /home/doug/CodeBlocksProjects/expressions/expressions/Token.h
 	<string>
 
-1446580082 source:/home/doug/CodeBlocksProjects/expressions/expressions/main.cpp
+1447195005 source:/home/doug/CodeBlocksProjects/expressions/expressions/main.cpp
 	<iostream>
 	<string>
 	"Evaluator.h"
 
-1446580082 source:/home/doug/CodeBlocksProjects/expressions/expressions/Token.cpp
+1447195005 source:/home/doug/CodeBlocksProjects/expressions/expressions/Token.cpp
 	"Token.h"
 	<string>
 	<stdexcept>
