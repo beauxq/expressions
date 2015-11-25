@@ -29,3 +29,8 @@
 
 # Linux Binary
 expressions
+
+#codeblocks project files
+*.cbp
+*.layout
+*.depend
