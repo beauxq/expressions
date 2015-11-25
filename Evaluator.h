@@ -31,8 +31,7 @@ private:
     int eval_tokens(std::queue<Token>& tokens) const;
     /** evaluate the expression from queue of tokens */
     int evaluate_one_operator(std::stack<int>& operands, const Token& operator_) const;
-    /** evaluates the operator with operands from the operand stack
-        places the result on the operand stack */
+    /** evaluates the operator with operands from the operand stack */
 public:
     // ctors
     Evaluator() : expression(""), cursor(0) {}

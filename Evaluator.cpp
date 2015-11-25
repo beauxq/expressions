@@ -258,8 +258,7 @@ int Evaluator::eval_tokens(std::queue<Token>& tokens) const
 
 int Evaluator::evaluate_one_operator(std::stack<int>& operands, const Token& operator_) const
 {
-    /** evaluates the operator with operands from the operand stack
-        places the result on the operand stack */
+    /** evaluates the operator with operands from the operand stack */
 
     if (operator_.operat == '(')
         throw std::invalid_argument("Unmatched open parenthesis" + cursor_str(operator_.location));
